@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: programsModule
+#          uri: http://localhost:8082/
+          uri: lb://programs-service
+          predicates:
+            - Path=/programs/**
+
+        - id: highSchoolsModule
+#          uri: http://localhost:8084/
+          uri: lb://highschools-service
+          predicates:
+            - Path=/highSchools/**
+
+  main:
+    web-application-type: reactive
+
+server:
+  port: 8085
+
